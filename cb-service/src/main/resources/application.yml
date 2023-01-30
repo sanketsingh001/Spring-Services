@@ -1,0 +1,5 @@
+server:
+  port: 1515
+spring:
+  zipkin:
+    enabled: true

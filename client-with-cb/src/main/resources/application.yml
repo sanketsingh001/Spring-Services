@@ -1,0 +1,29 @@
+server:
+  port: 2525
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    circuitbreakerevents:
+      enabled: true
+  health:
+    circuitbreakers:
+      enabled: true
+resilience4j:
+  circuitbreaker:
+    instances:
+      employee-cb:
+        registerHealthIndicator: true
+        automaticTransitionFromOpenToHalfOpenEnabled: false
+        failureRateThreshold: 5
+        minimumNumberOfCalls: 50
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
